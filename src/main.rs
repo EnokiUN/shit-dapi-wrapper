@@ -8,7 +8,7 @@ use std::{collections::HashMap, sync::Arc, time::Duration};
 use tokio::{net::TcpStream, sync::Mutex, task, time};
 use tokio_tungstenite::{connect_async, tungstenite::Message, MaybeTlsStream, WebSocketStream};
 
-const TOKEN: &str = "OTgwNTI5NDY2NDc4NTY3NDk1.G-PCW1.pjC9G7s8bLP_j74ryl61yPg3ztDa5RzhT2Q6ZY";
+const TOKEN: &str = "";
 const API_URL: &str = "https://discord.com/api/v10/";
 const GATEWAY_URL: &str = "wss://gateway.discord.gg/?v=9&encoding=json";
 
