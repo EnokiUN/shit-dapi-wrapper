@@ -3,7 +3,7 @@
 A Blazingly Fast (:rocket::rocket::rocket:) discord API wrapper so shit it
 makes your bot say shit uncontrollably.
 
-usage: clone this repo and change the token and the ID on line 102 (probs)
+usage: clone this repo and change the token and the ID
 (unless you like chaos) also make sure you have all the intents enabled on
 the dev portal cuz uhhhhhh.
 
