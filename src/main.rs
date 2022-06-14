@@ -9,6 +9,7 @@ use tokio::{net::TcpStream, sync::Mutex, task, time};
 use tokio_tungstenite::{connect_async, tungstenite::Message, MaybeTlsStream, WebSocketStream};
 
 const TOKEN: &str = "";
+const BOT_ID: &str = "";
 const API_URL: &str = "https://discord.com/api/v10/";
 const GATEWAY_URL: &str = "wss://gateway.discord.gg/?v=9&encoding=json";
 
@@ -99,7 +100,7 @@ impl Client {
             0 => match payload.t.unwrap().as_str() {
                 "MESSAGE_CREATE" => {
                     let data = payload.d.unwrap();
-                    if data["author"]["id"].as_str().unwrap() == "980529466478567495" {
+                    if data["author"]["id"].as_str().unwrap() == BOT_ID {
                         return Ok(());
                     }
                     let mut headers = reqwest::header::HeaderMap::new();
