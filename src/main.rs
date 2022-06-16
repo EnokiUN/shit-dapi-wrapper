@@ -23,35 +23,6 @@ struct GatewayPayload {
     d: Option<HashMap<String, Value>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-struct SendableGatewayPayload {
-    op: i32,
-    d: GatewayPayloadData,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(untagged)]
-enum GatewayPayloadData {
-    Identify(IdentifyData),
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct IdentifyProperties {
-    #[serde(rename = "$os")]
-    os: String,
-    #[serde(rename = "$device")]
-    browser: String,
-    #[serde(rename = "$device")]
-    device: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct IdentifyData {
-    token: String,
-    intents: u16,
-    properties: IdentifyProperties,
-}
-
 struct Client {
     token: String,
 }
