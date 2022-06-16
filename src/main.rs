@@ -71,28 +71,27 @@ impl Client {
             0 => match payload.t.unwrap().as_str() {
                 "MESSAGE_CREATE" => {
                     let data = payload.d.unwrap();
-                    if data["author"]["id"].as_str().unwrap() == BOT_ID {
-                        return Ok(());
+                    if data["author"]["id"].as_str().unwrap() != BOT_ID {
+                        let mut headers = reqwest::header::HeaderMap::new();
+                        headers.insert(
+                            "Authorization",
+                            ("Bot ".to_string() + TOKEN).parse().unwrap(),
+                        );
+                        reqwest::Client::new()
+                            .post(
+                                API_URL.to_string()
+                                    + &format!(
+                                        "channels/{}/messages",
+                                        data["channel_id"].as_str().unwrap()
+                                    ),
+                            )
+                            .headers(headers)
+                            .json(&json!({"content": "shit"}))
+                            .send()
+                            .await?
+                            .json()
+                            .await?;
                     }
-                    let mut headers = reqwest::header::HeaderMap::new();
-                    headers.insert(
-                        "Authorization",
-                        ("Bot ".to_string() + TOKEN).parse().unwrap(),
-                    );
-                    reqwest::Client::new()
-                        .post(
-                            API_URL.to_string()
-                                + &format!(
-                                    "channels/{}/messages",
-                                    data["channel_id"].as_str().unwrap()
-                                ),
-                        )
-                        .headers(headers)
-                        .json(&json!({"content": "shit"}))
-                        .send()
-                        .await?
-                        .json()
-                        .await?;
                 }
                 _ => {
                     println!("shit");
